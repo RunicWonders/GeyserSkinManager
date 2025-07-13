@@ -19,7 +19,7 @@ public class GameProfileWrapper implements MinecraftProfileWrapper {
             Class<?> craftPlayerClass = Class.forName("org.bukkit.craftbukkit." + nmsVersion + ".entity.CraftPlayer");
             getProfileMethod = craftPlayerClass.getMethod("getProfile");
         } catch (Exception e) {
-            throw new RuntimeException("getProfile method not found!", e);
+            throw new RuntimeException("未找到getProfile方法！", e);
         }
     }
 
@@ -34,7 +34,7 @@ public class GameProfileWrapper implements MinecraftProfileWrapper {
 
     @Override
     public void setPlayerProfile(Player player) {
-        // This is not a clone; no work needed
+        // 这不是克隆；不需要工作
     }
 
     public static MinecraftProfileWrapper from(Player player) {
@@ -45,7 +45,7 @@ public class GameProfileWrapper implements MinecraftProfileWrapper {
         try {
             return (GameProfile) getProfileMethod.invoke(player);
         } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException("Could not find GameProfile for " + player.getName(), e);
+            throw new RuntimeException("无法找到玩家 " + player.getName() + " 的GameProfile", e);
         }
     }
 }

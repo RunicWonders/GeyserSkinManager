@@ -82,7 +82,7 @@ public final class SkinUploader {
         JsonObject jsonResponse = response.getResponse();
 
         if (jsonResponse == null) {
-            throw new IllegalStateException("Response cannot be null!");
+            throw new IllegalStateException("响应不能为空！");
         }
 
         nextResult = jsonResponse.get("nextRequest").getAsLong();
@@ -96,13 +96,13 @@ public final class SkinUploader {
 
     public boolean checkResult(Consumer<String> warningLoggingFunction, String playerName, UploadResult uploadResult, Throwable throwable) {
         if (throwable != null) {
-            warningLoggingFunction.accept("Failed to upload player skin for " + playerName);
+            warningLoggingFunction.accept("上传玩家皮肤失败：" + playerName);
             throwable.printStackTrace();
             return false;
         }
 
         if (uploadResult.getError() != null) {
-            warningLoggingFunction.accept("Error while uploading player skin for " + playerName + " " + uploadResult.getError());
+            warningLoggingFunction.accept("上传玩家皮肤时出错：" + playerName + " " + uploadResult.getError());
             return false;
         }
         return true;

@@ -39,7 +39,7 @@ public class VelocitySkinEventListener extends SkinEventListener<Player, ServerC
             if (showSkins) {
                 for (GameProfile.Property property : event.getPlayer().getGameProfileProperties()) {
                     if (property.getName().equals("textures") && (!property.getValue().isEmpty() && !property.getValue().equals(Constants.FLOODGATE_STEVE_SKIN))) {
-                        // Don't overwrite existing textures
+                        // 不要覆盖现有纹理
                         shouldApply = false;
                         break;
                     }

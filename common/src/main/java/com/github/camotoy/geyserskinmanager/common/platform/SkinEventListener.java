@@ -42,7 +42,7 @@ public abstract class SkinEventListener<P, S> implements PlatformPlayerUuidSuppo
             if (setSkin == null) {
                 uploadSkin(skin, player, server, playerEntry);
             } else {
-                // We have the skin, we can go straight to applying it to the player
+                // 我们有皮肤，可以直接应用到玩家身上
                 onSuccess(player, server, setSkin);
             }
         }
@@ -67,7 +67,7 @@ public abstract class SkinEventListener<P, S> implements PlatformPlayerUuidSuppo
 
             onSuccess(player, other, skinEntry);
 
-            // Save the information so we don't have to upload skins to Mineskin again
+            // 保存信息，这样我们就不需要再次将皮肤上传到Mineskin
             database.savePlayerInformation(playerEntryToSave);
         });
     }

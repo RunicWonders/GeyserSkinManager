@@ -30,7 +30,7 @@ public final class GeyserSkinManager extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(listener, this);
             Bukkit.getMessenger().registerOutgoingPluginChannel(this, Constants.MOD_PLUGIN_MESSAGE_NAME);
         } else {
-            getLogger().info("We are in BungeeCord mode as there is no Geyser-Spigot plugin installed.");
+            getLogger().info("我们处于BungeeCord模式，因为服务器上没有安装Geyser-Spigot插件。");
             Bukkit.getMessenger().registerIncomingPluginChannel(this, Constants.SKIN_PLUGIN_MESSAGE_NAME, new BungeecordPluginMessageListener(this));
         }
     }

@@ -3,7 +3,7 @@ package com.github.camotoy.geyserskinmanager.common.platform;
 import java.util.UUID;
 
 /**
- * @param <T> the player class of this platform - ProxiedPlayer for BungeeCord, Player for Spigot, and so on.
+ * @param <T> 此平台的玩家类 - BungeeCord的ProxiedPlayer，Spigot的Player，等等。
  */
 public interface PlatformPlayerUuidSupport<T> {
     UUID getUUID(T player);

@@ -66,7 +66,7 @@ public class GeyserSkinRetriever implements BedrockSkinRetriever {
     private RawSkin getImage(BedrockClientData clientData) {
         byte[] image = Base64.getDecoder().decode(clientData.getSkinData());
         if (image.length > (128 * 128 * 4) || clientData.isPersonaSkin()) {
-            //System.out.println("Persona skins are not yet supported, sorry!");
+                            //System.out.println("Persona皮肤目前还不支持，抱歉！");
             return null;
         }
         String geometryName = new String(Base64.getDecoder().decode(clientData.getGeometryName()), StandardCharsets.UTF_8);

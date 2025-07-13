@@ -43,8 +43,8 @@ public class SkinDatabase {
         node.put("playerUuid", playerUuid);
         ArrayNode jsonSkinEntries =  SkinUtils.OBJECT_MAPPER.createArrayNode();
 
-        while (entry.getSkinEntries().size() > 5) { // Make this number a config option in the future?
-            // Remove old skin entries
+        while (entry.getSkinEntries().size() > 5) { // 将来将这个数字设为配置选项？
+            // 移除旧的皮肤条目
             long oldestDate = Long.MAX_VALUE;
             SkinEntry oldestSkinEntry = null;
             for (SkinEntry skinEntry : entry.getSkinEntries()) {
@@ -98,7 +98,7 @@ public class SkinDatabase {
                 if (jsonDateAdded != null) {
                     dateAdded = jsonDateAdded.asLong();
                 } else {
-                    continue; // Pre-1.3-SNAPSHOT - Don't load these in as their geometry might not have been saved
+                    continue; // 1.3-SNAPSHOT之前的版本 - 不要加载这些，因为它们的几何体可能没有被保存
                 }
 
                 skinEntries.add(new SkinEntry(entry.get("bedrockSkin").asText(), entry.get("javaSkinValue").asText(),

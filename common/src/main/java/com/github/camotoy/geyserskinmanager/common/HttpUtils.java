@@ -23,7 +23,7 @@ public class HttpUtils {
             URL url = new URL(urlString);
             connection = (HttpURLConnection) url.openConnection();
         } catch (Exception exception) {
-            throw new RuntimeException("Failed to create connection", exception);
+            throw new RuntimeException("创建连接失败", exception);
         }
 
         try {
@@ -32,7 +32,7 @@ public class HttpUtils {
             connection.setRequestProperty("User-Agent", USER_AGENT);
             connection.setRequestProperty("ContentType", "application/json");
         } catch (Exception exception) {
-            throw new RuntimeException("Failed to create request", exception);
+            throw new RuntimeException("创建请求失败", exception);
         }
 
         return readResponse(connection);
@@ -45,7 +45,7 @@ public class HttpUtils {
             URL url = new URL(urlString);
             connection = (HttpURLConnection) url.openConnection();
         } catch (Exception exception) {
-            throw new RuntimeException("Failed to create connection", exception);
+            throw new RuntimeException("创建连接失败", exception);
         }
 
         DataOutputStream outputStream = null;
@@ -63,7 +63,7 @@ public class HttpUtils {
             outputStream = new DataOutputStream(connection.getOutputStream());
             writeDataFor(outputStream, images);
         } catch (Exception exception) {
-            throw new RuntimeException("Failed to create request", exception);
+            throw new RuntimeException("创建请求失败", exception);
         } finally {
             try {
                 outputStream.close();
@@ -82,7 +82,7 @@ public class HttpUtils {
             try {
                 stream = connection.getErrorStream();
             } catch (Exception exception1) {
-                throw new RuntimeException("Both the input and the error stream failed?!");
+                throw new RuntimeException("输入流和错误流都失败了？！");
             }
         }
 
@@ -95,7 +95,7 @@ public class HttpUtils {
 
             return new HttpResponse(responseCode, response);
         } catch (Exception exception) {
-            throw new RuntimeException("Failed to read response", exception);
+            throw new RuntimeException("读取响应失败", exception);
         } finally {
             try {
                 streamReader.close();

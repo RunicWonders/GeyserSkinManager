@@ -68,7 +68,7 @@ public class SkinUtils {
     }
 
     /**
-     * @return the texture location on the Java format for the specified bone
+     * @return 指定骨骼在Java格式下的纹理位置
      */
     private static int[] getNewTextureOffset(String bone, float scale) {
         switch (bone) {
@@ -108,7 +108,7 @@ public class SkinUtils {
         int height = Math.round(size[1]);
         int depth = Math.round(size[2]);
 
-        // Work out the size of the texture based on the bone size
+        // 根据骨骼大小计算纹理大小
         int texWidth = (depth * 2) + (width * 2);
         int texHeight = depth + height;
 
@@ -146,7 +146,7 @@ public class SkinUtils {
                     }
                 }
             } catch (Exception e) {
-                System.out.println("Please send the following text and errors to the GeyserSkinManager developers!");
+                System.out.println("请将以下文本和错误发送给GeyserSkinManager开发人员！");
                 e.printStackTrace();
                 System.out.println(rawSkin.geometryName);
                 System.out.println(rawSkin.geometry);
@@ -170,15 +170,15 @@ public class SkinUtils {
                 }
 
                 if (newOffset[0] != -1) {
-                    // Get the cube data and work out the texture size
+                    // 获取立方体数据并计算纹理大小
                     Cube firstCube = bone.getCubes().get(0);
                     int[] texSize = sizeToTexSize(firstCube.getSize());
 
-                    // Get the texture offset from the UVs
+                    // 从UV获取纹理偏移
                     float[] tmpTexOffset = firstCube.getUV();
                     int[] texOffset = new int[]{Math.round(tmpTexOffset[0]), Math.round(tmpTexOffset[1])};
 
-                    // Loop through the texture for that bone mapping it into the correct place for the new image
+                    // 遍历该骨骼的纹理，将其映射到新图像的正确位置
                     for (int x = 0; x < texSize[0]; x++) {
                         for (int y = 0; y < texSize[1]; y++) {
                             newSkinImg.setRGB(newOffset[0] + x, newOffset[1] + y, skinImg.getRGB(texOffset[0] + x, texOffset[1] + y));

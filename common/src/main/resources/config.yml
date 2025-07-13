@@ -1,6 +1,6 @@
 # GeyserSkinManager by Camotoy
 
-# Whether to override any Floodgate detection and always show skins.
-# This is not recommended - Floodgate has skin support built-in,
-# or you can use https://modrinth.com/mod/bedrockskinutility/ alongside this mod to show skins, capes, and geometry.
+# 是否覆盖任何Floodgate检测并始终显示皮肤。
+# 不推荐这样做 - Floodgate内置了皮肤支持，
+# 或者您可以使用 https://modrinth.com/mod/bedrockskinutility/ 与此模组一起显示皮肤、披风和几何体。
 force-show-skins: false

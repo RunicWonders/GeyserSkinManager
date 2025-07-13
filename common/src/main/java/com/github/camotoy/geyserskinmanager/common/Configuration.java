@@ -45,7 +45,7 @@ public class Configuration {
             final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             return mapper.readValue(dataDirectory.resolve("config.yml").toFile(), Configuration.class);
         } catch (IOException e) {
-            throw new RuntimeException("Cannot create GeyserSkinManager config!", e);
+            throw new RuntimeException("无法创建GeyserSkinManager配置文件！", e);
         }
     }
 

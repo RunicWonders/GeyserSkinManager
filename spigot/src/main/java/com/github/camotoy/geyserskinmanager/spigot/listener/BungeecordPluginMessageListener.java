@@ -32,7 +32,7 @@ public class BungeecordPluginMessageListener implements Listener, PluginMessageL
     private final SpigotSkinApplier skinApplier;
 
     /**
-     * Information is stored here in the event that a plugin message is received before the player has joined.
+     * 如果插件消息在玩家加入之前收到，信息会存储在这里。
      */
     private final Cache<UUID, SkinEntry> skinEntryCache = CacheBuilder.newBuilder()
             .expireAfterWrite(10, TimeUnit.SECONDS)
@@ -64,7 +64,7 @@ public class BungeecordPluginMessageListener implements Listener, PluginMessageL
         try (DataInputStream in = new DataInputStream(new ByteArrayInputStream(message))) {
             int version = in.readInt();
             if (version != Constants.SKIN_PLUGIN_MESSAGE_VERSION) {
-                plugin.getLogger().warning("Received a plugin message with an invalid version! Make sure that GeyserSkinManager is updated on both BungeeCord and backend servers!");
+                plugin.getLogger().warning("收到了版本无效的插件消息！请确保BungeeCord和后端服务器上的GeyserSkinManager都已更新！");
                 return;
             }
             UUID uuid = new UUID(in.readLong(), in.readLong());
@@ -74,7 +74,7 @@ public class BungeecordPluginMessageListener implements Listener, PluginMessageL
 
             Player bedrockPlayer = Bukkit.getPlayer(uuid);
             if (bedrockPlayer == null) {
-                // Wait until they have officially joined
+                // 等待他们正式加入
                 skinEntryCache.put(uuid, skinEntry);
                 return;
             }

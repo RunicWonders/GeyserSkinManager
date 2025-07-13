@@ -32,7 +32,7 @@ public class SpigotEventListener extends SpigotPlatformEventListener {
         }
 
         if (skin != null || skinRetriever.isBedrockPlayer(event.getPlayer().getUniqueId())) {
-            // Send cape even if the player has a skin or the skin cannot be sent
+            // 即使玩家有皮肤或皮肤无法发送，也要发送披风
             modListener.onBedrockPlayerJoin(event.getPlayer(), skin);
         }
     }

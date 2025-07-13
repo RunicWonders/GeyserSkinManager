@@ -42,7 +42,7 @@ public abstract class BedrockSkinUtilityListener<T> implements PlatformPlayerUui
     public abstract void sendPluginMessage(byte[] payload, T player);
 
     /**
-     * @param player the player that we know has the mod installed.
+     * @param player 我们知道安装了模组的玩家。
      */
     public void onModdedPlayerConfirm(T player) {
         UUID uuid = getUUID(player);
@@ -100,20 +100,20 @@ public abstract class BedrockSkinUtilityListener<T> implements PlatformPlayerUui
             boolean hasGeometry = skin.geometry != null && !skin.geometry.trim().equals("null");
             out.writeBoolean(hasGeometry);
             if (hasGeometry) {
-                // Note that, because we won't be overriding the geometry, we shouldn't need to send if the player is alex or not
-                // Because this plugin will send the player with that model.
-                // The texture might still be HD, though.
+                            // 注意，因为我们不会覆盖几何体，所以我们不需要发送玩家是否是alex模型
+            // 因为这个插件会用该模型发送玩家。
+            // 不过纹理可能仍然是高清的。
                 writeString(out, skin.geometry);
                 writeString(out, skin.geometryName);
             }
 
-            // Skin data chunk size
+            // 皮肤数据块大小
             chunkSize = (int) Math.ceil(skin.data.length / (double) getPluginMessageDataLimit());
             out.writeInt(chunkSize);
 
             skinInfo = byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
-            throw new RuntimeException("Could not write skin information!", e);
+            throw new RuntimeException("无法写入皮肤信息！", e);
         }
 
         if (pluginMessageData == null) {
@@ -125,7 +125,7 @@ public abstract class BedrockSkinUtilityListener<T> implements PlatformPlayerUui
 
         try (ByteArrayOutputStream headerBAOS = new ByteArrayOutputStream(); DataOutputStream headerOut = new DataOutputStream(headerBAOS)) {
             headerOut.writeInt(BedrockSkinPluginMessageType.SKIN_DATA.ordinal());
-            // Use the player UUID as a common header
+            // 使用玩家UUID作为通用头部
             headerOut.writeLong(uuid.getMostSignificantBits());
             headerOut.writeLong(uuid.getLeastSignificantBits());
 
@@ -138,7 +138,7 @@ public abstract class BedrockSkinUtilityListener<T> implements PlatformPlayerUui
             for (int i = 0; i < pluginMessageData.skinData.length; i++) {
                 try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(); DataOutputStream out = new DataOutputStream(byteArrayOutputStream)) {
                     out.write(headerBAOS.toByteArray());
-                    out.writeInt(i); // chunk index
+                    out.writeInt(i); // 数据块索引
 
                     offset = i * (getPluginMessageDataLimit() - headerSize - out.size());
                     currentSkinData = new byte[(int) MathUtils.constrain(skin.data.length - offset, 0, getPluginMessageDataLimit() - headerSize - out.size())];
@@ -154,7 +154,7 @@ public abstract class BedrockSkinUtilityListener<T> implements PlatformPlayerUui
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException("Could not write skin information!", e);
+            throw new RuntimeException("无法写入皮肤信息！", e);
         }
 
         return pluginMessageData;
@@ -183,7 +183,7 @@ public abstract class BedrockSkinUtilityListener<T> implements PlatformPlayerUui
 
                 capeData = byteArrayOutputStream.toByteArray();
             } catch (IOException e) {
-                throw new RuntimeException("Could not write cape data!", e);
+                throw new RuntimeException("无法写入披风数据！", e);
             }
 
             if (pluginMessageData == null) {
@@ -196,7 +196,7 @@ public abstract class BedrockSkinUtilityListener<T> implements PlatformPlayerUui
     }
 
     /**
-     * Platform-agnostic way of writing a string.
+     * 平台无关的字符串写入方式。
      */
     protected void writeString(DataOutputStream out, String string) throws IOException {
         byte[] bytes = string.getBytes(StandardCharsets.UTF_8);

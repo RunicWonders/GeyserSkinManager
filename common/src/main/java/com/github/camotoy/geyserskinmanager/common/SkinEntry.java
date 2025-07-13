@@ -24,7 +24,7 @@ public class SkinEntry {
         this.bedrockBase64Skin = "";
         this.javaSkinValue = javaSkinValue;
         this.javaSkinSignature = javaSkinSignature;
-        this.dateAdded = 0; // Not going to be saved (no Bedrock texture), so it does not matter
+        this.dateAdded = 0; // 不会被保存（没有基岩版纹理），所以没关系
     }
 
     public String getBedrockBase64Skin() {

@@ -23,7 +23,7 @@ public class PaperEventListener extends SpigotPlatformEventListener {
         RawSkin skin = null;
         if (this.skinApplier != null) {
             PlayerProfile playerProfile = event.getPlayer().getPlayerProfile();
-            if (hasNoTextures(playerProfile)) { // Don't add new textures if the player already has some. This behavior may change in the future.
+            if (hasNoTextures(playerProfile)) { // 如果玩家已经有一些纹理，不要添加新纹理。这种行为可能在将来改变。
                 skin = skinRetriever.getBedrockSkin(event.getPlayer().getUniqueId());
                 if (skin != null) {
                     MinecraftProfileWrapper profile = new PaperProfileWrapper(playerProfile);
@@ -35,7 +35,7 @@ public class PaperEventListener extends SpigotPlatformEventListener {
         }
 
         if (skin != null || skinRetriever.isBedrockPlayer(event.getPlayer().getUniqueId())) {
-            // Send cape even if the player has a skin or the skin cannot be sent
+            // 即使玩家有皮肤或皮肤无法发送，也要发送披风
             modListener.onBedrockPlayerJoin(event.getPlayer(), skin);
         }
     }
